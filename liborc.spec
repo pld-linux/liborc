@@ -1,21 +1,24 @@
 # TODO:
 # - java (requires maven)
 # - libhdfspp?
+# - sparsehash?
 #
 # Conditional build:
 %bcond_with	java		# Java library
-%bcond_with	avx512		# AVX512 x86 instructions
+%bcond_with	avx512		# AVX512 x86 instructions (FIXME: adds also march=native)
 
+# see cmake_modules/ThirdpartyToolchain.cmake /ORC_FORMAT_VERSION, sha256 is specified later
+%define	orc_format_ver	1.1.0
 Summary:	Apache ORC - small, fast columnar storage for Hadoop workloads
 Summary(pl.UTF-8):	Apache ORC - małym, szybki kolumnowy format przechowywania danych dla zadań Hadoopa
 Name:		liborc
-Version:	2.1.3
+Version:	2.2.0
 Release:	1
 License:	Apache v2.0
 Group:		Libraries
 Source0:	https://downloads.apache.org/orc/orc-%{version}/orc-%{version}.tar.gz
-# Source0-md5:	9f49814d56198551d223156b8498b537
-Source1:	https://downloads.apache.org/orc/orc-format-1.1.0/orc-format-1.1.0.tar.gz
+# Source0-md5:	fe4e8724b8fc092dd09d32a05b66ddd2
+Source1:	https://downloads.apache.org/orc/orc-format-%{orc_format_ver}/orc-format-%{orc_format_ver}.tar.gz
 # Source1-md5:	45ddc8bbdacc0f2b8b1bd570b8a692c2
 Patch0:		%{name}-shared.patch
 URL:		https://orc.apache.org/
@@ -27,6 +30,13 @@ BuildRequires:	snappy-devel
 BuildRequires:	rpmbuild(macros) >= 1.605
 BuildRequires:	zlib-devel
 BuildRequires:	zstd-devel
+%if %{with avx512}
+Requires:	cpuinfo(avx512bw)
+Requires:	cpuinfo(avx512cd)
+Requires:	cpuinfo(avx512dq)
+Requires:	cpuinfo(avx512f)
+Requires:	cpuinfo(avx512vl)
+%endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
