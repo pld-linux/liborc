@@ -8,18 +8,18 @@
 %bcond_with	avx512		# AVX512 x86 instructions (FIXME: adds also march=native)
 
 # see cmake_modules/ThirdpartyToolchain.cmake /ORC_FORMAT_VERSION, sha256 is specified later
-%define	orc_format_ver	1.1.0
+%define	orc_format_ver	1.1.1
 Summary:	Apache ORC - small, fast columnar storage for Hadoop workloads
 Summary(pl.UTF-8):	Apache ORC - małym, szybki kolumnowy format przechowywania danych dla zadań Hadoopa
 Name:		liborc
-Version:	2.2.0
-Release:	2
+Version:	2.2.1
+Release:	1
 License:	Apache v2.0
 Group:		Libraries
 Source0:	https://downloads.apache.org/orc/orc-%{version}/orc-%{version}.tar.gz
-# Source0-md5:	fe4e8724b8fc092dd09d32a05b66ddd2
+# Source0-md5:	7da1331f6a4bb1154f4534ed1e201ea1
 Source1:	https://downloads.apache.org/orc/orc-format-%{orc_format_ver}/orc-format-%{orc_format_ver}.tar.gz
-# Source1-md5:	45ddc8bbdacc0f2b8b1bd570b8a692c2
+# Source1-md5:	4d851817fd5c67c517088a351dbe7b48
 Patch0:		%{name}-shared.patch
 URL:		https://orc.apache.org/
 BuildRequires:	cmake >= 3.12.0
