@@ -12,12 +12,12 @@
 Summary:	Apache ORC - small, fast columnar storage for Hadoop workloads
 Summary(pl.UTF-8):	Apache ORC - małym, szybki kolumnowy format przechowywania danych dla zadań Hadoopa
 Name:		liborc
-Version:	2.2.1
+Version:	2.2.2
 Release:	1
 License:	Apache v2.0
 Group:		Libraries
 Source0:	https://downloads.apache.org/orc/orc-%{version}/orc-%{version}.tar.gz
-# Source0-md5:	7da1331f6a4bb1154f4534ed1e201ea1
+# Source0-md5:	58e7736b9f6cc7373d605433eea33579
 Source1:	https://downloads.apache.org/orc/orc-format-%{orc_format_ver}/orc-format-%{orc_format_ver}.tar.gz
 # Source1-md5:	4d851817fd5c67c517088a351dbe7b48
 Patch0:		%{name}-shared.patch
@@ -138,7 +138,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/orc-scan
 %attr(755,root,root) %{_bindir}/orc-statistics
 %attr(755,root,root) %{_bindir}/orc-timezone-dump
-%attr(755,root,root) %{_libdir}/liborc.so.*.*.*
+%{_libdir}/liborc.so.*.*.*
 %ghost %{_libdir}/liborc.so.2
 
 %files devel
