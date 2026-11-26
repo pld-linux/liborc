@@ -1,0 +1,12 @@
+# find_package(Protobuf CONFIG) result was tested via ProtobufAlt_FOUND (never set yet), so the config targets carrying abseil were never used
+--- orc-2.3.1/cmake_modules/FindProtobufAlt.cmake.orig
++++ orc-2.3.1/cmake_modules/FindProtobufAlt.cmake
+@@ -54,7 +54,7 @@
+ endif ()
+ 
+ find_package (Protobuf CONFIG)
+-if (ProtobufAlt_FOUND)
++if (Protobuf_FOUND)
+   if (TARGET protobuf::libprotobuf)
+     set (PROTOBUF_LIBRARY protobuf::libprotobuf)
+     set (PROTOBUF_STATIC_LIB PROTOBUF_STATIC_LIB-NOTFOUND)
